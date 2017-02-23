@@ -1,3 +1,3 @@
 # homepage
 
-https://coolors.co/809bce-95b8d1-b8e0d2-d6eadf-eac4d5
+https://coolors.co/809bce-fcd0a1-b1b695-5e4b56-afd2e9
