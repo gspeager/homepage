@@ -1,156 +1,979 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Garrett Speager</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Garrett Speager</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Garrett Speager — Senior software engineer. A decade of building durable cross-platform software in C# and .NET." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ── Reset & Tokens ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:          #f6f7f9;
+  --surface:     #eef1f5;
+  --ink:         #11161c;
+  --ink-soft:    #2a323c;
+  --ink-mid:     #5b6573;
+  --ink-muted:   #8a93a0;
+  --rule:        #dde2e8;
+  --rule-soft:   #e8ecf1;
+  --accent:      #3d5f88;
+  --accent-deep: #1f3a5c;
+  --accent-soft: #7a9abf;
+  --sans: 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
 
-		<!-- Wrapper-->
-			<div id="wrapper">
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+}
 
-				<!-- Nav -->
-					<nav id="nav">
-						<a href="#me" class="icon fa-home active"><span>Home</span></a>
-						<a href="#work" class="icon fa-folder"><span>Work</span></a>
-						<a href="#tools" class="icon fa-desktop"><span>Tools</span></a>
-						<!--<a href="#" class="icon fa-file-pdf-o"><span>Resume</span></a>-->
-					</nav>
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+  letter-spacing: -0.005em;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
 
-				<!-- Main -->
-					<div id="main">
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
+p { margin: 0; }
 
-						<!-- Me -->
-							<article id="me" class="panel">
-								<header>
-									<h1>Garrett Speager</h1>
-									<p>Senior Mobile App and Web Developer</p>
-								</header>
-								<a href="#work" class="jumplink pic">
-									<span class="arrow icon fa-chevron-right"><span>See my work</span></span>
-									<img src="images/garrett.jpg" alt="" />
-								</a>
-							</article>
+.mono { font-family: var(--mono); font-feature-settings: normal; letter-spacing: 0; }
 
-						<!-- Work -->
-							<article id="work" class="panel">
-								<header>
-									<h2>Work</h2>
-								</header>
-								<p>
-									So far, I've had the opportunity try out many different types of development, but my expertise is in C# and the .Net framework.  
-									I started by creating desktop WinForms applications at Firehole Technologies (now owned by Autodesk).  
-									After that, I spent 5+ years utilizing, javascript and jquery, ASP MVC, and sql server, as a fullstack Web Developer for Sierra Trading Post.
-									During my time as Web Developer I was able to work on desktop, mobile, and responsive website design as well.
-									Currently, I'm working as the Lead Mobile Application developer for Sierra Trading Post, where I'm able to utilize Xamarin to develop ecommerce apps for both iOS and Android.
-								</p>
-								<section>
-									<div class="row">
-										<div class="4u 12u$(mobile)">
-											<a href="https://itunes.apple.com/us/app/sierra-trading-post/id646121874?mt=8" class="image fit"><img src="images/work/stp-ios.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://play.google.com/store/apps/details?id=com.sierratradingpost.android&hl=en" class="image fit"><img src="images/work/stp-android.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="http://www.sierratradingpost.com/" class="image fit"><img src="images/work/stp-web.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="http://www.sierratradingpost.com/mens-shirts~d~145/?ismobile=true" class="image fit"><img src="images/work/stp-mobile.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="http://www.autodesk.com/products/helius-composite/overview" class="image fit"><img src="images/work/helius-compositepro.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-										</div>
-									</div>
-								</section>
-							</article>
+/* ── Nav ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+}
+.nav.scrolled {
+  background: rgba(246, 247, 249, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom-color: var(--rule);
+}
+.nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+.nav-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+.nav-brand-text { letter-spacing: -0.005em; }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  color: var(--ink-mid);
+}
+.nav-links a {
+  position: relative;
+  transition: color .18s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform .25s cubic-bezier(.2,.7,.2,1);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
 
-						
+/* ── Fade-in animation ── */
+@keyframes gsFade { to { opacity: 1; transform: none; } }
+.fade {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: gsFade .8s ease forwards;
+}
+.fade-delay { animation-delay: .08s; }
 
-						<!-- Tools -->
-							<article id="tools" class="panel">
-								<header>
-									<h2>Tools</h2>
-								</header>
-								<p>
-									During my career as a developer I've utilized many tools in my work.  My goal is to always find the best tool for the job.  Here's just a few I've used to complete various projects.
-								</p>
-								<section>
-									<div class="row">
-										<div class="4u 12u$(mobile)">
-											<a href="https://www.visualstudio.com/" class="image fit"><img src="images/tools/visualstudio.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://www.xamarin.com/studio" class="image fit"><img src="images/tools/Xamarin-Studio.png" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="https://git-scm.com/" class="image fit"><img src="images/tools/git.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://about.gitlab.com/" class="image fit"><img src="images/tools/gitlab.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://github.com/" class="image fit"><img src="images/tools/github.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="https://www.sourcetreeapp.com/" class="image fit"><img src="images/tools/sourcetree.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://tortoisesvn.net/" class="image fit"><img src="images/tools/tortoisesvn.png" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://slack.com/" class="image fit"><img src="images/tools/slack.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="https://www.sketchapp.com/" class="image fit"><img src="images/tools/sketch.jpg" alt=""></a>
-										</div>
-									</div>
-								</section>
-							</article>
+/* ── Hero ── */
+.hero {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 88px 56px 96px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.35fr;
+  gap: 72px;
+  align-items: center;
+}
 
+/* Portrait */
+.portrait-wrap { position: relative; }
+.portrait-frame {
+  aspect-ratio: 4 / 5;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -28px rgba(17,22,28,.22), 0 2px 6px -2px rgba(17,22,28,.06);
+  position: relative;
+}
+.portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portrait-caption {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 4px;
+}
+.caption-left {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.caption-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  display: inline-block;
+  transform: translateY(-1px);
+  flex-shrink: 0;
+}
 
+/* Summary */
+.hero-eyebrow {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow-rule {
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.hero-h1 {
+  font-size: 68px;
+  line-height: 1.0;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  margin-bottom: 26px;
+}
+.hero-bio {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-mid);
+  max-width: 540px;
+  margin-bottom: 30px;
+}
+.hero-bio strong { color: var(--ink); font-weight: 400; }
 
+/* Stack chips */
+.stack-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
 
-					</div>
+/* Quick facts */
+.quickfacts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 56px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+}
+.fact-label {
+  font-size: 10px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.fact-value {
+  font-size: 15.5px;
+  color: var(--ink);
+  font-weight: 500;
+}
 
-				<!-- Footer -->
-					<div id="footer">
-						<nav id="nav">
-							<a href="https://www.linkedin.com/in/gspeager/" class="icon fa-linkedin"><span>Linkedin</span></a>
-							<a href="https://twitter.com/gspeager" class="icon fa-twitter"><span>Twitter</span></a>
-							<a href="https://github.com/gspeager/" class="icon fa-github"><span>Github</span></a>
-							<a href="mailto:gspeager@gmail.com" class="icon fa-envelope"><span>Email</span></a>
-						</nav>
-						<ul class="copyright">
-							<li>&copy; Garrett Speager</li>
-						</ul>
-					</div>
+/* ── Section header ── */
+.section-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  margin-bottom: 28px;
+  color: var(--ink-mid);
+}
+.section-num {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.section-label {
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  transform: translateY(-4px);
+}
+.section-title {
+  font-size: 40px;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  max-width: 760px;
+  line-height: 1.1;
+}
+.section-header { margin-bottom: 56px; }
 
-			</div>
+/* ── Work ── */
+.work {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 56px 120px;
+}
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/skel-viewport.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-			<script>
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-				})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+/* Pulsing dot */
+@keyframes gsPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(61,95,136,.45); }
+  80%  { box-shadow: 0 0 0 8px rgba(61,95,136,0); }
+  100% { box-shadow: 0 0 0 0 rgba(61,95,136,0); }
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot.pulse {
+  box-shadow: 0 0 0 0 rgba(61,95,136,.45);
+  animation: gsPulse 2.2s ease-out infinite;
+}
 
-				ga('create', 'UA-92697614-1', 'auto');
-				ga('send', 'pageview');
-			</script>
+/* Work card */
+.work-card {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 48px;
+  padding: 36px;
+  margin-bottom: 56px;
+  background: var(--surface);
+  border-radius: 10px;
+  align-items: center;
+  border: 1px solid var(--rule);
+}
+.work-card-badge {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.work-card-title {
+  font-size: 30px;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  line-height: 1.15;
+}
+.work-card-desc {
+  color: var(--ink-mid);
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+.work-placeholder {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--rule-soft) 0 8px,
+    var(--bg) 8px 16px
+  );
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  overflow: hidden;
+}
+.work-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-	</body>
+/* Past chapters */
+.chapters-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.chapter-row {
+  display: grid;
+  grid-template-columns: 200px 1fr 1fr;
+  gap: 32px;
+  padding: 26px 4px;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.chapter-years {
+  font-size: 12px;
+  color: var(--ink-mid);
+  letter-spacing: .04em;
+}
+.chapter-title {
+  font-size: 18px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.chapter-sub { font-size: 14px; color: var(--ink-mid); }
+.chapter-company { color: var(--accent); }
+.chapter-sep { color: var(--ink-muted); }
+.chapter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.tag {
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  color: var(--ink-mid);
+  padding: 3px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.chapters-end { height: 1px; background: var(--rule); width: 100%; }
+
+/* ── About (inverted) ── */
+.about-section {
+  background: var(--accent-deep);
+  color: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.about-glow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(122,154,191,.18), transparent 60%);
+  pointer-events: none;
+}
+.about-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 120px 56px;
+  position: relative;
+}
+.about-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  margin-bottom: 28px;
+  color: rgba(246,247,249,.7);
+}
+.about-num {
+  font-size: 32px;
+  color: var(--accent-soft);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.about-rule {
+  flex: 1;
+  height: 1px;
+  background: rgba(246,247,249,.15);
+  transform: translateY(-4px);
+}
+.about-header { margin-bottom: 56px; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-aside-label {
+  font-size: 11px;
+  color: var(--accent-soft);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.about-aside-sub {
+  font-size: 13px;
+  color: rgba(246,247,249,.55);
+  line-height: 1.7;
+  max-width: 240px;
+}
+.about-quote {
+  font-size: 26px;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+.about-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(246,247,249,.75);
+  margin-bottom: 22px;
+}
+.about-body:last-child { margin-bottom: 0; }
+
+/* ── Tools ── */
+.tools {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 56px 40px;
+}
+.tool-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+.tool-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 26px 14px;
+  width: 150px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  transition: border-color .22s ease, transform .22s ease;
+}
+.tool-tile:hover {
+  border-color: var(--tool-brand);
+  transform: translateY(-2px);
+}
+.tool-icon {
+  display: block;
+  width: 44px;
+  height: 44px;
+  color: var(--ink-mid);
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: color .22s ease;
+}
+.tool-tile:hover .tool-icon { color: var(--tool-brand); }
+.tool-name {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  letter-spacing: -0.005em;
+}
+
+/* ── Contact ── */
+.contact {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 64px 56px 56px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.contact-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.email-large {
+  font-size: 32px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-soft);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color .18s ease;
+}
+.email-large:hover { text-decoration-color: var(--accent); }
+
+.social-link {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 4px;
+  border-top: 1px solid var(--rule);
+  transition: padding .22s ease;
+}
+.social-link:last-child { border-bottom: 1px solid var(--rule); }
+.social-link:hover { padding-left: 14px; }
+.social-link-name { font-size: 16px; }
+.social-link-handle {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+.social-icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  color: var(--ink-mid);
+  fill: currentColor;
+  flex-shrink: 0;
+  transition: color .22s ease;
+}
+.social-link:hover .social-icon { color: var(--social-brand); }
+
+.footer-bar {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-text {
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+}
+
+/* ── Icons ── */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .nav-inner { padding: 16px 20px !important; }
+  .nav-brand-text { display: none; }
+  .nav-links { gap: 22px; font-size: 13px; }
+
+  .hero { padding: 56px 28px 64px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-h1 { font-size: 44px; line-height: 1.04; }
+  .hero-bio { font-size: 16.5px; }
+  .portrait-wrap { max-width: 360px; }
+  .quickfacts { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  .work { padding: 56px 28px 72px; }
+  .section-num { font-size: 24px; }
+  .section-title { font-size: 26px; }
+  .work-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+  .work-card-title { font-size: 24px; }
+  .chapter-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 4px; }
+  .chapter-tags { justify-content: flex-start; }
+  .chapter-years { order: -1; }
+
+  .about-inner { padding: 80px 28px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-quote { font-size: 20px; }
+
+  .tools { padding: 56px 28px 24px; }
+  .tool-grid { gap: 10px; }
+  .tool-tile { width: 120px; padding: 20px 10px; }
+  .tool-icon { width: 38px; height: 38px; }
+
+  .contact { padding: 48px 28px 56px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+  .email-large { font-size: 24px; word-break: break-all; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 48px 20px 56px; }
+  .work { padding: 48px 20px 64px; }
+  .tools { padding: 48px 20px 16px; }
+  .tool-tile { width: calc(33.333% - 8px); padding: 16px 8px; }
+  .tool-icon { width: 34px; height: 34px; }
+  .contact { padding: 40px 20px 48px; }
+  .hero-h1 { font-size: 38px; }
+  .section-title { font-size: 22px; }
+  .quickfacts { grid-template-columns: 1fr; gap: 14px; }
+  .nav-links { gap: 16px; }
+  .email-large { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <span class="nav-mark mono">gs</span>
+      <span class="nav-brand-text">Garrett Speager</span>
+    </a>
+    <nav class="nav-links mono">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#tools">Tools</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="top" class="hero">
+  <div class="hero-grid">
+
+    <!-- Portrait -->
+    <div class="portrait-wrap fade">
+      <div class="portrait-frame">
+        <img class="portrait-img" src="images/garrett.jpg" alt="Portrait of Garrett Speager" />
+      </div>
+      <div class="portrait-caption">
+        <div class="caption-left">
+          <span class="caption-dot"></span>
+          <span class="mono" style="font-size:11px;color:var(--ink-soft);letter-spacing:.06em;">Garrett, Wyoming</span>
+        </div>
+        <span class="mono" style="font-size:11px;color:var(--ink-muted);letter-spacing:.08em;">— 2026</span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="fade fade-delay">
+      <div class="hero-eyebrow mono">
+        <span class="hero-eyebrow-rule"></span>
+        Garrett Speager
+      </div>
+      <h1 class="hero-h1">
+        Software Engineer<br>&amp; Tech Enthusiast
+      </h1>
+      <p class="hero-bio">
+        A decade of building durable cross-platform software.
+        Strongest in C# and the .NET ecosystem, with shipped work
+        across iOS, Android, and the full web stack.
+        <strong>
+          My favorite part of this field is that there's always something
+          worth learning next.
+        </strong>
+      </p>
+
+      <div class="stack-chips">
+        <span class="chip">C#</span>
+        <span class="chip">.NET</span>
+        <span class="chip">MAUI</span>
+        <span class="chip">iOS</span>
+        <span class="chip">Android</span>
+        <span class="chip">ASP MVC</span>
+        <span class="chip">JavaScript</span>
+      </div>
+
+      <div class="quickfacts">
+        <div>
+          <div class="fact-label mono">Based</div>
+          <div class="fact-value">Wyoming, USA</div>
+        </div>
+        <div>
+          <div class="fact-label mono">Focus</div>
+          <div class="fact-value">Mobile · Web</div>
+        </div>
+        <div>
+          <div class="fact-label mono">Experience</div>
+          <div class="fact-value">10+ years</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work" class="work">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span class="section-num mono">01</span>
+      <span class="section-label mono">Work</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2 class="section-title">What I'm Working On &amp; Where I've Been</h2>
+  </div>
+
+  <!-- In-progress card -->
+  <article class="work-card">
+    <div>
+      <div class="work-card-badge mono">
+        <span class="dot pulse"></span>
+        In progress · 2026
+      </div>
+      <h3 class="work-card-title">Centsibly</h3>
+      <p class="work-card-desc">
+         Budget sensibly. Live freely.
+  		 Take control of every dollar. Plan your budget, track your net worth, and map out retirement.
+      </p>
+    </div>
+    <div class="work-placeholder">
+      <img class="work-preview-img" src="images/centsibly-preview.png" alt="Centsibly project preview" />
+    </div>
+  </article>
+
+  <!-- Past chapters -->
+  <div>
+    <div class="chapters-label mono">Past chapters</div>
+
+    <div class="chapter-row">
+      <span class="chapter-years mono">Feb 2026 — Present</span>
+      <div>
+        <div class="chapter-title">Head of Product &amp; Engineering</div>
+        <div class="chapter-sub">
+          <span class="chapter-company">Centsibly</span>
+        </div>
+      </div>
+      <div class="chapter-tags">
+        <span class="tag mono">.NET</span>
+        <span class="tag mono">MAUI</span>
+		<span class="tag mono">C#</span>
+        <span class="tag mono">Go</span>
+      </div>
+    </div>
+
+    <div class="chapter-row">
+      <span class="chapter-years mono">Jan 2019 — Present</span>
+      <div>
+        <div class="chapter-title">Sr. Software Engineer</div>
+        <div class="chapter-sub">
+          <span class="chapter-company">WorkPartners</span>
+        </div>
+      </div>
+      <div class="chapter-tags">
+        <span class="tag mono">Xamarin</span>
+		<span class="tag mono">C#</span>
+        <span class="tag mono">Oracle</span>
+        <span class="tag mono">.NET</span>
+        <span class="tag mono">MVC</span>
+      </div>
+    </div>
+
+    <div class="chapter-row">
+      <span class="chapter-years mono">Jan 2017 — Jan 2019</span>
+      <div>
+        <div class="chapter-title">Lead Mobile Developer: Sierra Trading Post</div>
+        <div class="chapter-sub">
+          <span class="chapter-company">The TJX Companies, Inc.</span>
+        </div>
+      </div>
+      <div class="chapter-tags">
+        <span class="tag mono">Xamarin</span>
+        <span class="tag mono">SQL Server</span>
+        <span class="tag mono">C#</span>
+        <span class="tag mono">.NET</span>
+      </div>
+    </div>
+
+    <div class="chapters-end"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="about-section">
+  <div class="about-glow" aria-hidden="true"></div>
+  <div class="about-inner">
+    <div class="about-header">
+      <div class="about-eyebrow">
+        <span class="about-num mono">02</span>
+        <span class="section-label mono">About</span>
+        <span class="about-rule"></span>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <div class="about-aside-label mono">A bit more</div>
+        <div class="about-aside-sub mono">The short version.</div>
+      </div>
+      <div>
+        <p class="about-quote">
+          Still as interested in the next thing as the last.
+        </p>
+        <p class="about-body">
+          Ten years in C# and .NET, but what I enjoy most is when the stack
+          shifts — new languages, new frameworks, AI reshaping how we build.
+          Outside of work, I'm usually on the golf course.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tools -->
+<section id="tools" class="tools">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span class="section-num mono">03</span>
+      <span class="section-label mono">Tools</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2 class="section-title">Tools and services I've shipped with.</h2>
+  </div>
+
+  <div class="tool-grid">
+    <a class="tool-tile" href="https://github.com" target="_blank" rel="noopener" style="--tool-brand:#181717;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      <span class="tool-name">GitHub</span>
+    </a>
+    <a class="tool-tile" href="https://about.gitlab.com" target="_blank" rel="noopener" style="--tool-brand:#FC6D26;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m23.6004 9.5927-.0337-.0862L20.3.9814a.851.851 0 0 0-.3362-.405.8748.8748 0 0 0-.9997.0539.8748.8748 0 0 0-.29.4399l-2.2055 6.748H7.5375l-2.2057-6.748a.8573.8573 0 0 0-.29-.4412.8748.8748 0 0 0-.9997-.0537.8585.8585 0 0 0-.3362.4049L.4332 9.5015l-.0325.0862a6.0657 6.0657 0 0 0 2.0119 7.0105l.0113.0087.03.0213 4.976 3.7264 2.462 1.8633 1.4995 1.1321a1.0085 1.0085 0 0 0 1.2197 0l1.4995-1.1321 2.4619-1.8633 5.006-3.7489.0125-.01a6.0682 6.0682 0 0 0 2.0094-7.003z"/></svg>
+      <span class="tool-name">GitLab</span>
+    </a>
+    <a class="tool-tile" href="https://dotnet.microsoft.com" target="_blank" rel="noopener" style="--tool-brand:#512BD4;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L4.78 9.863a2.896 2.896 0 0 1-.258-.51h-.036c.032.189.048.592.048 1.21v5.772H3.157V7.53h1.659l3.965 6.32c.167.261.275.442.323.54h.024c-.04-.233-.06-.629-.06-1.185V7.529h1.372zm-8.703-.693a.868.829 0 0 1-.869.829.868.829 0 0 1-.868-.83.868.829 0 0 1 .868-.828.868.829 0 0 1 .869.829Z"/></svg>
+      <span class="tool-name">.NET</span>
+    </a>
+    <a class="tool-tile" href="https://go.dev" target="_blank" rel="noopener" style="--tool-brand:#00ADD8;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M1.811 10.231c-.047 0-.058-.023-.035-.059l.246-.315c.023-.035.081-.058.128-.058h4.172c.046 0 .058.035.035.07l-.199.303c-.023.036-.082.07-.117.07zM.047 11.306c-.047 0-.059-.023-.035-.058l.245-.316c.023-.035.082-.058.129-.058h5.328c.047 0 .07.035.058.07l-.093.28c-.012.047-.058.07-.105.07zm2.828 1.075c-.047 0-.059-.035-.035-.07l.163-.292c.023-.035.07-.07.117-.07h2.337c.047 0 .07.035.07.082l-.023.28c0 .047-.047.082-.082.082zm12.129-2.36c-.736.187-1.239.327-1.963.514-.176.046-.187.058-.34-.117-.174-.199-.303-.327-.548-.444-.737-.362-1.45-.257-2.115.175-.795.514-1.204 1.274-1.192 2.22.011.935.654 1.706 1.577 1.835.795.105 1.46-.175 1.987-.77.105-.13.198-.27.315-.434H10.47c-.245 0-.304-.152-.222-.35.152-.362.432-.97.596-1.274a.315.315 0 01.292-.187h4.253c-.023.316-.023.631-.07.947a4.983 4.983 0 01-.958 2.29c-.841 1.11-1.94 1.8-3.33 1.986-1.145.152-2.209-.07-3.143-.77-.865-.655-1.356-1.52-1.484-2.595-.152-1.274.222-2.419.993-3.424.83-1.086 1.928-1.776 3.272-2.02 1.098-.2 2.15-.07 3.096.571.62.41 1.063.97 1.356 1.648.07.105.023.164-.117.2m3.868 6.461c-1.064-.024-2.034-.328-2.852-1.029a3.665 3.665 0 01-1.262-2.255c-.21-1.32.152-2.489.947-3.529.853-1.122 1.881-1.706 3.272-1.95 1.192-.21 2.314-.095 3.33.595.923.63 1.496 1.484 1.648 2.605.198 1.578-.257 2.863-1.344 3.962-.771.783-1.718 1.273-2.805 1.495-.315.06-.63.07-.934.106zm2.78-4.72c-.011-.153-.011-.27-.034-.387-.21-1.157-1.274-1.81-2.384-1.554-1.087.245-1.788.935-2.045 2.033-.21.912.234 1.835 1.075 2.21.643.28 1.285.244 1.905-.07.923-.48 1.425-1.228 1.484-2.233z"/></svg>
+      <span class="tool-name">Go</span>
+    </a>
+    <a class="tool-tile" href="https://play.google.com" target="_blank" rel="noopener" style="--tool-brand:#414141;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+      <span class="tool-name">Google Play</span>
+    </a>
+    <a class="tool-tile" href="https://www.apple.com/app-store/" target="_blank" rel="noopener" style="--tool-brand:#0D96F6;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8.8086 14.9194l6.1107-11.0368c.0837-.1513.1682-.302.2437-.4584.0685-.142.1267-.2854.1646-.4403.0803-.3259.0588-.6656-.066-.9767-.1238-.3095-.3417-.5678-.6201-.7355a1.4175 1.4175 0 0 0-.921-.1924c-.3207.043-.6135.1935-.8443.4288-.1094.1118-.1996.2361-.2832.369-.092.1463-.175.2979-.259.4492l-.3864.6979-.3865-.6979c-.0837-.1515-.1667-.303-.2587-.4492-.0837-.1329-.1739-.2572-.2835-.369-.2305-.2353-.5233-.3857-.844-.429a1.4181 1.4181 0 0 0-.921.1926c-.2784.1677-.4964.426-.6203.7355-.1246.311-.1461.6508-.066.9767.038.155.0962.2984.1648.4403.0753.1564.1598.307.2437.4584l1.248 2.2543-4.8625 8.7825H2.0295c-.1676 0-.3351-.0007-.5026.0092-.1522.009-.3004.0284-.448.0714-.3108.0906-.5822.2798-.7783.548-.195.2665-.3006.5929-.3006.9279 0 .3352.1057.6612.3006.9277.196.2683.4675.4575.7782.548.1477.043.296.0623.4481.0715.1675.01.335.009.5026.009h13.0974c.0171-.0357.059-.1294.1-.2697.415-1.4151-.6156-2.843-2.0347-2.843zM3.113 18.5418l-.7922 1.5008c-.0818.1553-.1644.31-.2384.4705-.067.1458-.124.293-.1611.452-.0785.3346-.0576.6834.0645 1.0029.1212.3175.3346.583.607.7549.2727.172.5891.2416.9013.1975.3139-.044.6005-.1986.8263-.4402.1072-.1148.1954-.2424.2772-.3787.0902-.1503.1714-.3059.2535-.4612L6 19.4636c-.0896-.149-.9473-1.4704-2.887-.9218m20.5861-3.0056a1.4707 1.4707 0 0 0-.779-.5407c-.1476-.0425-.2961-.0616-.4483-.0705-.1678-.0099-.3352-.0091-.503-.0091H18.648l-4.3891-7.817c-.6655.7005-.9632 1.485-1.0773 2.1976-.1655 1.0333.0367 2.0934.546 3.0004l5.2741 9.3933c.084.1494.167.299.2591.4435.0837.131.1739.2537.2836.364.231.2323.5238.3809.8449.4232.3192.0424.643-.0244.9217-.1899.2784-.1653.4968-.4204.621-.7257.1246-.3072.146-.6425.0658-.9641-.0381-.1529-.0962-.2945-.165-.4346-.0753-.1543-.1598-.303-.2438-.4524l-1.216-2.1662h1.596c.1677 0 .3351.0009.5029-.009.1522-.009.3007-.028.4483-.0705a1.4707 1.4707 0 0 0 .779-.5407A1.5386 1.5386 0 0 0 24 16.452a1.539 1.539 0 0 0-.3009-.9158Z"/></svg>
+      <span class="tool-name">App Store</span>
+    </a>
+    <a class="tool-tile" href="https://www.anthropic.com/claude" target="_blank" rel="noopener" style="--tool-brand:#D97757;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+      <span class="tool-name">Claude</span>
+    </a>
+    <a class="tool-tile" href="https://github.com/features/copilot" target="_blank" rel="noopener" style="--tool-brand:#000000;">
+      <svg class="tool-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M23.922 16.997C23.061 18.492 18.063 22.02 12 22.02 5.937 22.02.939 18.492.078 16.997A.641.641 0 0 1 0 16.741v-2.869a.883.883 0 0 1 .053-.22c.372-.935 1.347-2.292 2.605-2.656.167-.429.414-1.055.644-1.517a10.098 10.098 0 0 1-.052-1.086c0-1.331.282-2.499 1.132-3.368.397-.406.89-.717 1.474-.952C7.255 2.937 9.248 1.98 11.978 1.98c2.731 0 4.767.957 6.166 2.093.584.235 1.077.546 1.474.952.85.869 1.132 2.037 1.132 3.368 0 .368-.014.733-.052 1.086.23.462.477 1.088.644 1.517 1.258.364 2.233 1.721 2.605 2.656a.841.841 0 0 1 .053.22v2.869a.641.641 0 0 1-.078.256Zm-11.75-5.992h-.344a4.359 4.359 0 0 1-.355.508c-.77.947-1.918 1.492-3.508 1.492-1.725 0-2.989-.359-3.782-1.259a2.137 2.137 0 0 1-.085-.104L4 11.746v6.585c1.435.779 4.514 2.179 8 2.179 3.486 0 6.565-1.4 8-2.179v-6.585l-.098-.104s-.033.045-.085.104c-.793.9-2.057 1.259-3.782 1.259-1.59 0-2.738-.545-3.508-1.492a4.359 4.359 0 0 1-.355-.508Zm2.328 3.25c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm-5 0c.549 0 1 .451 1 1v2c0 .549-.451 1-1 1-.549 0-1-.451-1-1v-2c0-.549.451-1 1-1Zm3.313-6.185c.136 1.057.403 1.913.878 2.497.442.544 1.134.938 2.344.938 1.573 0 2.292-.337 2.657-.751.384-.435.558-1.15.558-2.361 0-1.14-.243-1.847-.705-2.319-.477-.488-1.319-.862-2.824-1.025-1.487-.161-2.192.138-2.533.529-.269.307-.437.808-.438 1.578v.021c0 .265.021.562.063.893Zm-1.626 0c.042-.331.063-.628.063-.894v-.02c-.001-.77-.169-1.271-.438-1.578-.341-.391-1.046-.69-2.533-.529-1.505.163-2.347.537-2.824 1.025-.462.472-.705 1.179-.705 2.319 0 1.211.175 1.926.558 2.361.365.414 1.084.751 2.657.751 1.21 0 1.902-.394 2.344-.938.475-.584.742-1.44.878-2.497Z"/></svg>
+      <span class="tool-name">Copilot</span>
+    </a>
+    <a class="tool-tile" href="https://code.visualstudio.com" target="_blank" rel="noopener" style="--tool-brand:#0098FF;">
+      <svg class="tool-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M30.865 3.448l-6.583-3.167c-0.766-0.37-1.677-0.214-2.276 0.385l-12.609 11.505-5.495-4.167c-0.51-0.391-1.229-0.359-1.703 0.073l-1.76 1.604c-0.583 0.526-0.583 1.443-0.005 1.969l4.766 4.349-4.766 4.349c-0.578 0.526-0.578 1.443 0.005 1.969l1.76 1.604c0.479 0.432 1.193 0.464 1.703 0.073l5.495-4.172 12.615 11.51c0.594 0.599 1.505 0.755 2.271 0.385l6.589-3.172c0.693-0.333 1.13-1.031 1.13-1.802v-21.495c0-0.766-0.443-1.469-1.135-1.802zM24.005 23.266l-9.573-7.266 9.573-7.266z"/></svg>
+      <span class="tool-name">VS Code</span>
+    </a>
+  </div>
+</section>
+
+<!-- Contact / Elsewhere -->
+<section id="contact" class="contact">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span class="section-num mono">04</span>
+      <span class="section-label mono">Elsewhere</span>
+      <span class="section-rule"></span>
+    </div>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <div class="contact-label mono">Write to me</div>
+      <a href="mailto:gspeager@gmail.com" class="email-large">gspeager@gmail.com</a>
+    </div>
+    <div>
+      <div class="contact-label mono">Find me</div>
+
+      <a href="https://github.com/gspeager/" class="social-link" style="--social-brand:#181717;">
+        <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        <span class="social-link-name">GitHub</span>
+        <span class="social-link-handle mono">@gspeager ↗</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/gspeager/" class="social-link" style="--social-brand:#0A66C2;">
+        <svg class="social-icon" viewBox="0 0 640 640" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg>
+        <span class="social-link-name">LinkedIn</span>
+        <span class="social-link-handle mono">in/gspeager ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span class="footer-text mono">gspeager.com</span>
+    <span class="footer-text mono">© 2026 Garrett Speager</span>
+  </div>
+</section>
+
+<script>
+  // Sticky nav: add .scrolled class when page is scrolled
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 16);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
 </html>
