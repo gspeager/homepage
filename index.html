@@ -1,156 +1,878 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Garrett Speager</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
-	</head>
-	<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Garrett Speager</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Garrett Speager — Senior software engineer. A decade of building durable cross-platform software in C# and .NET." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ── Reset & Tokens ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:          #f6f7f9;
+  --surface:     #eef1f5;
+  --ink:         #11161c;
+  --ink-soft:    #2a323c;
+  --ink-mid:     #5b6573;
+  --ink-muted:   #8a93a0;
+  --rule:        #dde2e8;
+  --rule-soft:   #e8ecf1;
+  --accent:      #3d5f88;
+  --accent-deep: #1f3a5c;
+  --accent-soft: #7a9abf;
+  --sans: 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+}
 
-		<!-- Wrapper-->
-			<div id="wrapper">
+html {
+  background: var(--bg);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
 
-				<!-- Nav -->
-					<nav id="nav">
-						<a href="#me" class="icon fa-home active"><span>Home</span></a>
-						<a href="#work" class="icon fa-folder"><span>Work</span></a>
-						<a href="#tools" class="icon fa-desktop"><span>Tools</span></a>
-						<!--<a href="#" class="icon fa-file-pdf-o"><span>Resume</span></a>-->
-					</nav>
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'ss01', 'cv11';
+  letter-spacing: -0.005em;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
 
-				<!-- Main -->
-					<div id="main">
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { font-weight: 500; letter-spacing: -0.02em; }
+p { margin: 0; }
 
-						<!-- Me -->
-							<article id="me" class="panel">
-								<header>
-									<h1>Garrett Speager</h1>
-									<p>Senior Mobile App and Web Developer</p>
-								</header>
-								<a href="#work" class="jumplink pic">
-									<span class="arrow icon fa-chevron-right"><span>See my work</span></span>
-									<img src="images/garrett.jpg" alt="" />
-								</a>
-							</article>
+.mono { font-family: var(--mono); font-feature-settings: normal; letter-spacing: 0; }
 
-						<!-- Work -->
-							<article id="work" class="panel">
-								<header>
-									<h2>Work</h2>
-								</header>
-								<p>
-									So far, I've had the opportunity try out many different types of development, but my expertise is in C# and the .Net framework.  
-									I started by creating desktop WinForms applications at Firehole Technologies (now owned by Autodesk).  
-									After that, I spent 5+ years utilizing, javascript and jquery, ASP MVC, and sql server, as a fullstack Web Developer for Sierra Trading Post.
-									During my time as Web Developer I was able to work on desktop, mobile, and responsive website design as well.
-									Currently, I'm working as the Lead Mobile Application developer for Sierra Trading Post, where I'm able to utilize Xamarin to develop ecommerce apps for both iOS and Android.
-								</p>
-								<section>
-									<div class="row">
-										<div class="4u 12u$(mobile)">
-											<a href="https://itunes.apple.com/us/app/sierra-trading-post/id646121874?mt=8" class="image fit"><img src="images/work/stp-ios.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://play.google.com/store/apps/details?id=com.sierratradingpost.android&hl=en" class="image fit"><img src="images/work/stp-android.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="http://www.sierratradingpost.com/" class="image fit"><img src="images/work/stp-web.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="http://www.sierratradingpost.com/mens-shirts~d~145/?ismobile=true" class="image fit"><img src="images/work/stp-mobile.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="http://www.autodesk.com/products/helius-composite/overview" class="image fit"><img src="images/work/helius-compositepro.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-										</div>
-									</div>
-								</section>
-							</article>
+/* ── Nav ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+}
+.nav.scrolled {
+  background: rgba(246, 247, 249, 0.82);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border-bottom-color: var(--rule);
+}
+.nav-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 20px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+.nav-mark {
+  width: 28px;
+  height: 28px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0;
+  flex-shrink: 0;
+}
+.nav-brand-text { letter-spacing: -0.005em; }
+.nav-links {
+  display: flex;
+  gap: 32px;
+  color: var(--ink-mid);
+}
+.nav-links a {
+  position: relative;
+  transition: color .18s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform .25s cubic-bezier(.2,.7,.2,1);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
 
-						
+/* ── Fade-in animation ── */
+@keyframes gsFade { to { opacity: 1; transform: none; } }
+.fade {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: gsFade .8s ease forwards;
+}
+.fade-delay { animation-delay: .08s; }
 
-						<!-- Tools -->
-							<article id="tools" class="panel">
-								<header>
-									<h2>Tools</h2>
-								</header>
-								<p>
-									During my career as a developer I've utilized many tools in my work.  My goal is to always find the best tool for the job.  Here's just a few I've used to complete various projects.
-								</p>
-								<section>
-									<div class="row">
-										<div class="4u 12u$(mobile)">
-											<a href="https://www.visualstudio.com/" class="image fit"><img src="images/tools/visualstudio.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://www.xamarin.com/studio" class="image fit"><img src="images/tools/Xamarin-Studio.png" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="https://git-scm.com/" class="image fit"><img src="images/tools/git.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://about.gitlab.com/" class="image fit"><img src="images/tools/gitlab.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://github.com/" class="image fit"><img src="images/tools/github.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="https://www.sourcetreeapp.com/" class="image fit"><img src="images/tools/sourcetree.jpg" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://tortoisesvn.net/" class="image fit"><img src="images/tools/tortoisesvn.png" alt=""></a>
-										</div>
-										<div class="4u 12u$(mobile)">
-											<a href="https://slack.com/" class="image fit"><img src="images/tools/slack.jpg" alt=""></a>
-										</div>
-										<div class="4u$ 12u$(mobile)">
-											<a href="https://www.sketchapp.com/" class="image fit"><img src="images/tools/sketch.jpg" alt=""></a>
-										</div>
-									</div>
-								</section>
-							</article>
+/* ── Hero ── */
+.hero {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 88px 56px 96px;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.35fr;
+  gap: 72px;
+  align-items: center;
+}
 
+/* Portrait */
+.portrait-wrap { position: relative; }
+.portrait-frame {
+  aspect-ratio: 4 / 5;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -28px rgba(17,22,28,.22), 0 2px 6px -2px rgba(17,22,28,.06);
+  position: relative;
+}
+.portrait-placeholder {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--rule-soft) 0 8px,
+    var(--bg) 8px 16px
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+}
+.portrait-caption {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 4px;
+}
+.caption-left {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.caption-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  display: inline-block;
+  transform: translateY(-1px);
+  flex-shrink: 0;
+}
 
+/* Summary */
+.hero-eyebrow {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.hero-eyebrow-rule {
+  width: 18px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.hero-h1 {
+  font-size: 68px;
+  line-height: 1.0;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  margin-bottom: 26px;
+}
+.hero-bio {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink-mid);
+  max-width: 540px;
+  margin-bottom: 30px;
+}
+.hero-bio strong { color: var(--ink); font-weight: 400; }
 
+/* Stack chips */
+.stack-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
 
-					</div>
+/* Quick facts */
+.quickfacts {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 56px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+}
+.fact-label {
+  font-size: 10px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.fact-value {
+  font-size: 15.5px;
+  color: var(--ink);
+  font-weight: 500;
+}
 
-				<!-- Footer -->
-					<div id="footer">
-						<nav id="nav">
-							<a href="https://www.linkedin.com/in/gspeager/" class="icon fa-linkedin"><span>Linkedin</span></a>
-							<a href="https://twitter.com/gspeager" class="icon fa-twitter"><span>Twitter</span></a>
-							<a href="https://github.com/gspeager/" class="icon fa-github"><span>Github</span></a>
-							<a href="mailto:gspeager@gmail.com" class="icon fa-envelope"><span>Email</span></a>
-						</nav>
-						<ul class="copyright">
-							<li>&copy; Garrett Speager</li>
-						</ul>
-					</div>
+/* ── Section header ── */
+.section-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  margin-bottom: 28px;
+  color: var(--ink-mid);
+}
+.section-num {
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.section-label {
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.section-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  transform: translateY(-4px);
+}
+.section-title {
+  font-size: 40px;
+  letter-spacing: -0.025em;
+  font-weight: 500;
+  max-width: 760px;
+  line-height: 1.1;
+}
+.section-header { margin-bottom: 56px; }
 
-			</div>
+/* ── Work ── */
+.work {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 56px 120px;
+}
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/skel-viewport.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-			<script>
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-				})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+/* Pulsing dot */
+@keyframes gsPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(61,95,136,.45); }
+  80%  { box-shadow: 0 0 0 8px rgba(61,95,136,0); }
+  100% { box-shadow: 0 0 0 0 rgba(61,95,136,0); }
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.dot.pulse {
+  box-shadow: 0 0 0 0 rgba(61,95,136,.45);
+  animation: gsPulse 2.2s ease-out infinite;
+}
 
-				ga('create', 'UA-92697614-1', 'auto');
-				ga('send', 'pageview');
-			</script>
+/* Work card */
+.work-card {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 48px;
+  padding: 36px;
+  margin-bottom: 56px;
+  background: var(--surface);
+  border-radius: 10px;
+  align-items: center;
+  border: 1px solid var(--rule);
+}
+.work-card-badge {
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.work-card-title {
+  font-size: 30px;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  font-weight: 500;
+  line-height: 1.15;
+}
+.work-card-desc {
+  color: var(--ink-mid);
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+.work-placeholder {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--rule-soft) 0 8px,
+    var(--bg) 8px 16px
+  );
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+}
 
-	</body>
+/* Past chapters */
+.chapters-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.chapter-row {
+  display: grid;
+  grid-template-columns: 128px 1fr 1fr;
+  gap: 32px;
+  padding: 26px 4px;
+  border-top: 1px solid var(--rule);
+  align-items: baseline;
+}
+.chapter-years {
+  font-size: 12px;
+  color: var(--ink-mid);
+  letter-spacing: .04em;
+}
+.chapter-title {
+  font-size: 18px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.chapter-sub { font-size: 14px; color: var(--ink-mid); }
+.chapter-company { color: var(--accent); }
+.chapter-sep { color: var(--ink-muted); }
+.chapter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.tag {
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  color: var(--ink-mid);
+  padding: 3px 8px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+.chapters-end { height: 1px; background: var(--rule); width: 100%; }
+
+/* ── About (inverted) ── */
+.about-section {
+  background: var(--accent-deep);
+  color: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.about-glow {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(122,154,191,.18), transparent 60%);
+  pointer-events: none;
+}
+.about-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 120px 56px;
+  position: relative;
+}
+.about-eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 22px;
+  margin-bottom: 28px;
+  color: rgba(246,247,249,.7);
+}
+.about-num {
+  font-size: 32px;
+  color: var(--accent-soft);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.about-rule {
+  flex: 1;
+  height: 1px;
+  background: rgba(246,247,249,.15);
+  transform: translateY(-4px);
+}
+.about-header { margin-bottom: 56px; }
+.about-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+.about-aside-label {
+  font-size: 11px;
+  color: var(--accent-soft);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.about-aside-sub {
+  font-size: 13px;
+  color: rgba(246,247,249,.55);
+  line-height: 1.7;
+  max-width: 240px;
+}
+.about-quote {
+  font-size: 26px;
+  line-height: 1.4;
+  letter-spacing: -0.015em;
+  margin-bottom: 32px;
+  font-weight: 400;
+}
+.about-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(246,247,249,.75);
+  margin-bottom: 22px;
+}
+.about-body:last-child { margin-bottom: 0; }
+
+/* ── Contact ── */
+.contact {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 120px 56px 56px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+.contact-label {
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.email-large {
+  font-size: 32px;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-soft);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color .18s ease;
+}
+.email-large:hover { text-decoration-color: var(--accent); }
+
+.social-link {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 4px;
+  border-top: 1px solid var(--rule);
+  transition: padding .22s ease;
+}
+.social-link:last-child { border-bottom: 1px solid var(--rule); }
+.social-link:hover { padding-left: 14px; }
+.social-link-name { font-size: 16px; }
+.social-link-handle {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.footer-bar {
+  margin-top: 120px;
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-text {
+  font-size: 11px;
+  color: var(--ink-muted);
+  letter-spacing: .12em;
+}
+
+/* ── Icons ── */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .nav-inner { padding: 16px 20px !important; }
+  .nav-brand-text { display: none; }
+  .nav-links { gap: 22px; font-size: 13px; }
+
+  .hero { padding: 56px 28px 64px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-h1 { font-size: 44px; line-height: 1.04; }
+  .hero-bio { font-size: 16.5px; }
+  .portrait-wrap { max-width: 360px; }
+  .quickfacts { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  .work { padding: 56px 28px 72px; }
+  .section-num { font-size: 24px; }
+  .section-title { font-size: 26px; }
+  .work-card {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 24px;
+  }
+  .work-card-title { font-size: 24px; }
+  .chapter-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 4px; }
+  .chapter-tags { justify-content: flex-start; }
+  .chapter-years { order: -1; }
+
+  .about-inner { padding: 80px 28px; }
+  .about-grid { grid-template-columns: 1fr; gap: 32px; }
+  .about-quote { font-size: 20px; }
+
+  .contact { padding: 80px 28px 56px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 44px; }
+  .email-large { font-size: 24px; word-break: break-all; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 48px 20px 56px; }
+  .work { padding: 48px 20px 64px; }
+  .contact { padding: 64px 20px 48px; }
+  .hero-h1 { font-size: 38px; }
+  .section-title { font-size: 22px; }
+  .quickfacts { grid-template-columns: 1fr; gap: 14px; }
+  .nav-links { gap: 16px; }
+  .email-large { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-brand">
+      <span class="nav-mark mono">gs</span>
+      <span class="nav-brand-text">Garrett Speager</span>
+    </a>
+    <nav class="nav-links mono">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Hero -->
+<section id="top" class="hero">
+  <div class="hero-grid">
+
+    <!-- Portrait -->
+    <div class="portrait-wrap fade">
+      <div class="portrait-frame">
+        <div class="portrait-placeholder mono">portrait · 4:5</div>
+      </div>
+      <div class="portrait-caption">
+        <div class="caption-left">
+          <span class="caption-dot"></span>
+          <span class="mono" style="font-size:11px;color:var(--ink-soft);letter-spacing:.06em;">Garrett, Wyoming</span>
+        </div>
+        <span class="mono" style="font-size:11px;color:var(--ink-muted);letter-spacing:.08em;">— 2026</span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="fade fade-delay">
+      <div class="hero-eyebrow mono">
+        <span class="hero-eyebrow-rule"></span>
+        Garrett Speager
+      </div>
+      <h1 class="hero-h1">
+        Senior software<br>engineer.
+      </h1>
+      <p class="hero-bio">
+        A decade of building durable cross-platform software.
+        Strongest in C# and the .NET ecosystem, with shipped work
+        across iOS, Android, and the full web stack.
+        <strong>
+          My favorite kind of code is the kind that's still doing its job five
+          years later, without anyone needing to look at it.
+        </strong>
+      </p>
+
+      <div class="stack-chips">
+        <span class="chip">C#</span>
+        <span class="chip">.NET</span>
+        <span class="chip">Xamarin</span>
+        <span class="chip">iOS</span>
+        <span class="chip">Android</span>
+        <span class="chip">ASP MVC</span>
+        <span class="chip">JavaScript</span>
+        <span class="chip">SQL Server</span>
+      </div>
+
+      <div class="quickfacts">
+        <div>
+          <div class="fact-label mono">Based</div>
+          <div class="fact-value">Wyoming, USA</div>
+        </div>
+        <div>
+          <div class="fact-label mono">Focus</div>
+          <div class="fact-value">Mobile · Web</div>
+        </div>
+        <div>
+          <div class="fact-label mono">Experience</div>
+          <div class="fact-value">10+ years</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Work -->
+<section id="work" class="work">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span class="section-num mono">01</span>
+      <span class="section-label mono">Work</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2 class="section-title">A new project is in flight. Here's the shape of what's come before.</h2>
+  </div>
+
+  <!-- In-progress card -->
+  <article class="work-card">
+    <div>
+      <div class="work-card-badge mono">
+        <span class="dot pulse"></span>
+        In progress · 2026
+      </div>
+      <h3 class="work-card-title">Untitled, coming soon</h3>
+      <p class="work-card-desc">
+        An active project I'll feature here once it's ready to share.
+        Cross-platform, built with the boring-good tooling I've trusted for years.
+      </p>
+    </div>
+    <div class="work-placeholder mono">project preview · 16:10</div>
+  </article>
+
+  <!-- Past chapters -->
+  <div>
+    <div class="chapters-label mono">Past chapters</div>
+
+    <div class="chapter-row">
+      <span class="chapter-years mono">20XX — Present</span>
+      <div>
+        <div class="chapter-title">Lead mobile developer</div>
+        <div class="chapter-sub">
+          <span class="chapter-company">[ Current company ]</span>
+          <span class="chapter-sep"> · </span>
+          Cross-platform e-commerce apps for iOS &amp; Android.
+        </div>
+      </div>
+      <div class="chapter-tags">
+        <span class="tag mono">Xamarin</span>
+        <span class="tag mono">C#</span>
+        <span class="tag mono">iOS</span>
+        <span class="tag mono">Android</span>
+      </div>
+    </div>
+
+    <div class="chapter-row">
+      <span class="chapter-years mono">20XX — 20XX</span>
+      <div>
+        <div class="chapter-title">Full-stack web developer</div>
+        <div class="chapter-sub">
+          <span class="chapter-company">[ Previous company ]</span>
+          <span class="chapter-sep"> · </span>
+          Responsive web, server, and tooling work.
+        </div>
+      </div>
+      <div class="chapter-tags">
+        <span class="tag mono">ASP MVC</span>
+        <span class="tag mono">JavaScript</span>
+        <span class="tag mono">jQuery</span>
+        <span class="tag mono">SQL Server</span>
+      </div>
+    </div>
+
+    <div class="chapter-row">
+      <span class="chapter-years mono">20XX — 20XX</span>
+      <div>
+        <div class="chapter-title">Desktop applications</div>
+        <div class="chapter-sub">
+          <span class="chapter-company">[ First role ]</span>
+          <span class="chapter-sep"> · </span>
+          Engineering tools, WinForms.
+        </div>
+      </div>
+      <div class="chapter-tags">
+        <span class="tag mono">C#</span>
+        <span class="tag mono">.NET</span>
+        <span class="tag mono">WinForms</span>
+      </div>
+    </div>
+
+    <div class="chapters-end"></div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="about-section">
+  <div class="about-glow" aria-hidden="true"></div>
+  <div class="about-inner">
+    <div class="about-header">
+      <div class="about-eyebrow">
+        <span class="about-num mono">02</span>
+        <span class="section-label mono">About</span>
+        <span class="about-rule"></span>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div>
+        <div class="about-aside-label mono">A bit more</div>
+        <div class="about-aside-sub mono">The short version, in three paragraphs.</div>
+      </div>
+      <div>
+        <p class="about-quote">
+          I'm drawn to careful, durable software — the kind that doesn't shout,
+          doesn't churn, and gets out of the user's way.
+        </p>
+        <p class="about-body">
+          Most of my career has been spent in C# and .NET on the desktop, server,
+          and mobile sides. I lean on tools that have been around long enough to
+          be trusted, and I'm patient with the ones that haven't.
+        </p>
+        <p class="about-body">
+          Outside of work I'm usually outside.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact / Elsewhere -->
+<section id="contact" class="contact">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span class="section-num mono">03</span>
+      <span class="section-label mono">Elsewhere</span>
+      <span class="section-rule"></span>
+    </div>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <div class="contact-label mono">Write to me</div>
+      <a href="mailto:gspeager@gmail.com" class="email-large">gspeager@gmail.com</a>
+    </div>
+    <div>
+      <div class="contact-label mono">Find me</div>
+
+      <a href="https://github.com/gspeager/" class="social-link">
+        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
+        </svg>
+        <span class="social-link-name">GitHub</span>
+        <span class="social-link-handle mono">@gspeager ↗</span>
+      </a>
+
+      <a href="https://www.linkedin.com/in/gspeager/" class="social-link">
+        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="2"/>
+          <path d="M8 10v8M8 7v.01M12 18v-5a2 2 0 0 1 4 0v5M12 10v8"/>
+        </svg>
+        <span class="social-link-name">LinkedIn</span>
+        <span class="social-link-handle mono">in/gspeager ↗</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <span class="footer-text mono">gspeager.com</span>
+    <span class="footer-text mono">© 2026 Garrett Speager</span>
+  </div>
+</section>
+
+<script>
+  // Sticky nav: add .scrolled class when page is scrolled
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 16);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
 </html>
