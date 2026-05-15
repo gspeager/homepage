@@ -496,6 +496,48 @@ p { margin: 0; }
 }
 .about-body:last-child { margin-bottom: 0; }
 
+/* ── Tools ── */
+.tools {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 80px 56px 40px;
+}
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+.tool-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 22px 14px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  transition: border-color .22s ease, transform .22s ease;
+}
+.tool-tile:hover {
+  border-color: var(--tool-brand);
+  transform: translateY(-2px);
+}
+.tool-icon {
+  width: 32px;
+  height: 32px;
+  background-color: var(--ink-mid);
+  -webkit-mask: var(--tool-icon) center / contain no-repeat;
+          mask: var(--tool-icon) center / contain no-repeat;
+  transition: background-color .22s ease;
+}
+.tool-tile:hover .tool-icon { background-color: var(--tool-brand); }
+.tool-name {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  letter-spacing: -0.005em;
+}
+
 /* ── Contact ── */
 .contact {
   max-width: 1120px;
@@ -545,6 +587,15 @@ p { margin: 0; }
   font-size: 12px;
   color: var(--ink-muted);
 }
+.social-icon {
+  width: 22px;
+  height: 22px;
+  background-color: var(--ink-mid);
+  -webkit-mask: var(--tool-icon) center / contain no-repeat;
+          mask: var(--tool-icon) center / contain no-repeat;
+  transition: background-color .22s ease;
+}
+.social-link:hover .social-icon { background-color: var(--tool-brand); }
 
 .footer-bar {
   margin-top: 120px;
@@ -597,6 +648,9 @@ p { margin: 0; }
   .about-grid { grid-template-columns: 1fr; gap: 32px; }
   .about-quote { font-size: 20px; }
 
+  .tools { padding: 56px 28px 24px; }
+  .tool-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+
   .contact { padding: 80px 28px 56px; }
   .contact-grid { grid-template-columns: 1fr; gap: 44px; }
   .email-large { font-size: 24px; word-break: break-all; }
@@ -605,6 +659,9 @@ p { margin: 0; }
 @media (max-width: 480px) {
   .hero { padding: 48px 20px 56px; }
   .work { padding: 48px 20px 64px; }
+  .tools { padding: 48px 20px 16px; }
+  .tool-grid { grid-template-columns: repeat(3, 1fr); }
+  .tool-tile { padding: 16px 8px; }
   .contact { padding: 64px 20px 48px; }
   .hero-h1 { font-size: 38px; }
   .section-title { font-size: 22px; }
@@ -626,6 +683,7 @@ p { margin: 0; }
     <nav class="nav-links mono">
       <a href="#work">Work</a>
       <a href="#about">About</a>
+      <a href="#tools">Tools</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -817,11 +875,71 @@ p { margin: 0; }
   </div>
 </section>
 
+<!-- Tools -->
+<section id="tools" class="tools">
+  <div class="section-header">
+    <div class="section-eyebrow">
+      <span class="section-num mono">03</span>
+      <span class="section-label mono">Tools</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2 class="section-title">Tools and services I've shipped with.</h2>
+  </div>
+
+  <div class="tool-grid">
+    <a class="tool-tile" href="https://github.com" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/github.svg); --tool-brand:#181717;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">GitHub</span>
+    </a>
+    <a class="tool-tile" href="https://about.gitlab.com" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/gitlab.svg); --tool-brand:#FC6D26;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">GitLab</span>
+    </a>
+    <a class="tool-tile" href="https://dotnet.microsoft.com" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/dotnet.svg); --tool-brand:#512BD4;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">.NET</span>
+    </a>
+    <a class="tool-tile" href="https://go.dev" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/go.svg); --tool-brand:#00ADD8;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">Go</span>
+    </a>
+    <a class="tool-tile" href="https://play.google.com" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/googleplay.svg); --tool-brand:#414141;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">Google Play</span>
+    </a>
+    <a class="tool-tile" href="https://www.apple.com/app-store/" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/appstore.svg); --tool-brand:#0D96F6;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">App Store</span>
+    </a>
+    <a class="tool-tile" href="https://www.anthropic.com/claude" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/claude.svg); --tool-brand:#D97757;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">Claude</span>
+    </a>
+    <a class="tool-tile" href="https://github.com/features/copilot" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/githubcopilot.svg); --tool-brand:#000000;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">Copilot</span>
+    </a>
+    <a class="tool-tile" href="https://code.visualstudio.com" target="_blank" rel="noopener"
+       style="--tool-icon:url(images/tools/vs-code.svg); --tool-brand:#0098FF;">
+      <span class="tool-icon" aria-hidden="true"></span>
+      <span class="tool-name">VS Code</span>
+    </a>
+  </div>
+</section>
+
 <!-- Contact / Elsewhere -->
 <section id="contact" class="contact">
   <div class="section-header">
     <div class="section-eyebrow">
-      <span class="section-num mono">03</span>
+      <span class="section-num mono">04</span>
       <span class="section-label mono">Elsewhere</span>
       <span class="section-rule"></span>
     </div>
@@ -835,19 +953,16 @@ p { margin: 0; }
     <div>
       <div class="contact-label mono">Find me</div>
 
-      <a href="https://github.com/gspeager/" class="social-link">
-        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-          <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/>
-        </svg>
+      <a href="https://github.com/gspeager/" class="social-link"
+         style="--tool-icon:url(images/tools/github.svg); --tool-brand:#181717;">
+        <span class="social-icon" aria-hidden="true"></span>
         <span class="social-link-name">GitHub</span>
         <span class="social-link-handle mono">@gspeager ↗</span>
       </a>
 
-      <a href="https://www.linkedin.com/in/gspeager/" class="social-link">
-        <svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="3" width="18" height="18" rx="2"/>
-          <path d="M8 10v8M8 7v.01M12 18v-5a2 2 0 0 1 4 0v5M12 10v8"/>
-        </svg>
+      <a href="https://www.linkedin.com/in/gspeager/" class="social-link"
+         style="--tool-icon:url(images/tools/linkedin.svg); --tool-brand:#0A66C2;">
+        <span class="social-icon" aria-hidden="true"></span>
         <span class="social-link-name">LinkedIn</span>
         <span class="social-link-handle mono">in/gspeager ↗</span>
       </a>
