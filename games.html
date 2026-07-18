@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Server Setup Instructions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #10121b;
+    --bg-soft: #161a26;
+    --card: #1b1f2e;
+    --card-border: #2b3044;
+    --hairline: #2b3044;
+    --parchment: #ece7da;
+    --muted: #9aa0b8;
+    --gold: #cda45e;
+    --gold-bright: #e6c07f;
+    --ice: #7fd1e0;
+    --pal-green: #8fbf5f;
+    --pal-amber: #e2984a;
+    --code-bg: #0d0f17;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--parchment);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px 100px; }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    padding: 90px 24px 60px;
+    text-align: center;
+    position: relative;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ice);
+    margin-bottom: 18px;
+  }
+
+  h1.title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: clamp(34px, 6vw, 56px);
+    margin: 0 0 14px;
+    color: var(--gold-bright);
+    letter-spacing: 0.01em;
+  }
+
+  .hero-sub {
+    color: var(--muted);
+    font-size: 17px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .rune-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 34px auto 0;
+    max-width: 340px;
+  }
+  .rune-divider .line { height: 1px; flex: 1; background: var(--card-border); }
+  .rune-divider .diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); opacity: 0.8; }
+
+  /* ---------- Section headers ---------- */
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin: 64px 0 28px;
+  }
+  .section-head h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    margin: 0;
+    color: var(--parchment);
+    font-weight: 600;
+  }
+  .section-head .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--gold);
+    border: 1px solid rgba(205,164,94,0.35);
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+  .section-lead {
+    color: var(--muted);
+    font-size: 15px;
+    margin: -18px 0 30px;
+  }
+
+  /* ---------- Step cards ---------- */
+  .step {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 20px;
+    padding: 26px 24px 26px 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .step:last-child { border-bottom: 1px solid var(--hairline); }
+
+  .step-num {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(205,164,94,0.4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    color: var(--gold-bright);
+    font-size: 16px;
+    background: rgba(205,164,94,0.08);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .step h3 {
+    margin: 0 0 8px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--parchment);
+  }
+
+  .step p {
+    margin: 0 0 10px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+
+  .step p:last-child { margin-bottom: 0; }
+
+  .step a.linkbtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    padding: 9px 16px;
+    background: var(--gold);
+    color: #14121a;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: filter 0.15s ease, transform 0.15s ease;
+  }
+  .step a.linkbtn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+  code.inline {
+    background: var(--code-bg);
+    border: 1px solid var(--card-border);
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ice);
+  }
+
+  /* ---------- Copy block ---------- */
+  .copyblock {
+    margin-top: 12px;
+    background: var(--code-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .copyblock .cb-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 14px;
+    background: rgba(255,255,255,0.02);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .cb-head span {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .copy-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold-bright);
+    background: transparent;
+    border: 1px solid rgba(205,164,94,0.35);
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+  .copy-btn:hover { background: rgba(205,164,94,0.1); }
+  .copy-btn.copied { color: var(--pal-green); border-color: var(--pal-green); }
+
+  .copyblock pre {
+    margin: 0;
+    padding: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--parchment);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 10px 14px;
+    border-left: 2px solid var(--ice);
+    background: rgba(127,209,224,0.06);
+    border-radius: 0 8px 8px 0;
+  }
+  .note.warn { border-left-color: var(--gold); background: rgba(205,164,94,0.07); }
+
+  /* ---------- Palworld card ---------- */
+  .pal-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 30px;
+    position: relative;
+  }
+  .pal-card h3 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: var(--parchment);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .pal-card h3 .dot {
+    width: 9px; height: 9px;
+    background: var(--pal-green);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(143,191,95,0.8);
+  }
+  .pal-card > p.desc { color: var(--muted); font-size: 14px; margin: 0 0 20px; }
+
+  .pal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .pal-field {
+    background: var(--code-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .pal-field .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--pal-green);
+    margin-bottom: 5px;
+  }
+  .pal-field .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    color: var(--parchment);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .pal-field .value button {
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 5px;
+  }
+  .pal-field .value button:hover { color: var(--pal-green); background: rgba(143,191,95,0.1); }
+
+  .pal-steps { list-style: none; margin: 0; padding: 0; counter-reset: pal; }
+  .pal-steps li {
+    counter-increment: pal;
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--parchment);
+  }
+  .pal-steps li::before {
+    content: counter(pal);
+    position: absolute;
+    left: 0; top: 0;
+    width: 20px; height: 20px;
+    background: rgba(143,191,95,0.15);
+    color: var(--pal-green);
+    border-radius: 50%;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 80px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    padding-top: 26px;
+    border-top: 1px solid var(--hairline);
+  }
+  footer .glyph { color: var(--gold); margin-bottom: 8px; font-size: 18px; }
+
+  @media (max-width: 560px) {
+    .step { grid-template-columns: 40px 1fr; }
+    .pal-grid { grid-template-columns: 1fr; }
+    header.hero { padding: 60px 16px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">Setup Instructions</div>
+  <h1 class="title">Joining My Game Servers</h1>
+  <p class="hero-sub">Setup steps for the WoW server, plus a quick guide to the Palworld server below.</p>
+  <div class="rune-divider"><div class="line"></div><div class="diamond"></div><div class="line"></div></div>
+</header>
+
+<div class="wrap">
+
+  <div class="section-head">
+    <h2>WoW Client Setup</h2>
+    <span class="tag">3.3.5a</span>
+  </div>
+  <p class="section-lead">Four steps: get the client, point it at the server, add the patch, then log in.</p>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div>
+      <h3>Download the WoW client</h3>
+      <p>The server runs on client version 3.3.5a. If you don't already have a WoW folder on your computer, grab a clean client from ChromieCraft below. It's a big download (about 16.5 GB), so a torrent client (like qBittorrent) will usually be faster and more reliable than the direct download link.</p>
+      <a class="linkbtn" href="https://chromiecraft.com/en/downloads/" target="_blank" rel="noopener">Get the client &rarr;</a>
+      <p class="note">Already have a 3.3.5a WoW folder from another server? You can reuse it. Just make sure the version matches 3.3.5a before moving on.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div>
+      <h3>Point your client at the server</h3>
+      <p>Inside your WoW folder, open <code class="inline">Data \ enUS</code> (or your language folder if you're not using English) and find a file called <code class="inline">realmlist.wtf</code>. Open it with Notepad, delete everything inside, and replace it with this single line:</p>
+      <div class="copyblock">
+        <div class="cb-head"><span>realmlist.wtf</span><button class="copy-btn" data-copy="set realmlist game.gspeager.com">Copy</button></div>
+        <pre>set realmlist game.gspeager.com</pre>
+      </div>
+      <p class="note">Save the file and close it. If Notepad won't let you save, right click the WoW folder, choose Properties, and make sure it's not set to Read Only.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div>
+      <h3>Install the required patch</h3>
+      <p>The server needs one small patch file on your end to work correctly.</p>
+      <div class="copyblock">
+        <div class="cb-head"><span>Download link</span><button class="copy-btn" data-copy="https://github.com/heyitsbench/mod-arac/blob/master/Patch-A.MPQ">Copy</button></div>
+        <pre>https://github.com/heyitsbench/mod-arac/blob/master/Patch-A.MPQ</pre>
+      </div>
+      <a class="linkbtn" href="https://github.com/heyitsbench/mod-arac/blob/master/Patch-A.MPQ" target="_blank" rel="noopener">Get the patch &rarr;</a>
+      <p>Once downloaded, drop the patch file straight into the <code class="inline">Data</code> folder inside your WoW installation, right next to the other patch files already there. No need to unzip it into subfolders.</p>
+      <p class="note warn">Close WoW completely before adding the patch, and make sure it's fully copied in before you launch the game again.</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">4</div>
+    <div>
+      <h3>Log in and create your character</h3>
+      <p>Run <code class="inline">Wow.exe</code> directly (not the Launcher) from your WoW folder. Enter the account username and password I gave you, pick the realm from the list, and create your character.</p>
+      <p class="note">Don't have an account yet? Just message me and I'll set one up for you.</p>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top: 90px;">
+    <h2>Palworld Setup</h2>
+    <span class="tag" style="color: var(--pal-green); border-color: rgba(143,191,95,0.35);">PC + XBOX + PS5</span>
+  </div>
+
+  <div class="pal-card">
+    <h3><span class="dot"></span>GBombPals</h3>
+    <p class="desc">Works from Steam, the Xbox/Game Pass app, or PS5.</p>
+
+    <div class="pal-grid">
+      <div class="pal-field">
+        <div class="label">Server Address</div>
+        <div class="value"><span>game.gspeager.com</span><button data-copy="game.gspeager.com">copy</button></div>
+      </div>
+      <div class="pal-field">
+        <div class="label">Port</div>
+        <div class="value"><span>8211</span><button data-copy="8211">copy</button></div>
+      </div>
+    </div>
+
+    <ol class="pal-steps">
+      <li>Open Palworld and choose <strong>Join Multiplayer Game</strong>.</li>
+      <li>Look for <strong>GBombPals</strong> in the community server list, or choose "Join by IP" and enter <code class="inline">game.gspeager.com</code> and the port above.</li>
+      <li>Message me for the server password and enter it when prompted.</li>
+      <li>Drop in, grab a Pal, and get building.</li>
+    </ol>
+    <p class="note" style="margin-top: 16px;">Password isn't posted here, just ask and I'll send it over.</p>
+  </div>
+
+  <footer>
+    <div class="glyph">&#10022;</div>
+    Questions or stuck on a step? Just message me directly and I'll help you sort it out.
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      const text = btn.getAttribute('data-copy');
+      navigator.clipboard.writeText(text).then(function() {
+        const original = btn.textContent;
+        const isCopyBtn = btn.classList.contains('copy-btn');
+        btn.textContent = isCopyBtn ? 'Copied' : 'copied';
+        if (isCopyBtn) btn.classList.add('copied');
+        setTimeout(function() {
+          btn.textContent = original;
+          if (isCopyBtn) btn.classList.remove('copied');
+        }, 1500);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
